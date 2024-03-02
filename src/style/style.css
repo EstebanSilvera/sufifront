@@ -35,9 +35,8 @@
 }
 
 .nav-desembolso {
-    width: 1277px;
+    width: 1280px;
     height: 72px;
-    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -146,7 +145,7 @@
     height: 80px;
     border-radius: 24px 24px 0px 0px;
     box-shadow: 0px 3px 16px #AAAAAA4D;
-    top: -5em;
+    top: -5.1rem;
     left: 24em;
     display: flex;
     justify-content: space-between;
@@ -172,8 +171,8 @@
 
 .mensaje {
     position: relative;
-    top: -30vh;
-    left: 960px;
+    top: -13.6rem;
+    left: 950px;
     width: 236px;
     height: 108px;
 

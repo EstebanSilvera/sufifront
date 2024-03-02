@@ -12,8 +12,6 @@ const salir = () => {
 
     if (confirmar) {
         window.location.href = "/";
-    } else {
-        alert("Presionaste 'No'");
     }
 }
 
@@ -52,6 +50,17 @@ const Desembolso = () => {
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
     ]);
 
     const agregarCampo = (event) => {
@@ -87,21 +96,22 @@ const Desembolso = () => {
 
                     <img className='sufi-desembolso ml-[598px] mr-[430.89px]' src={sufi} alt='' />
 
-                    <div onClick={() => salir()} className='flex justify-center items-center cursor-pointer'>
-                        <button className='my-[26px] font-sans font-bold mr-[12px] text-sm'>
+                    <div onClick={() => salir()} className='flex justify-center items-center cursor-pointer mr-[24px] w-[156px] h-[48px]'>
+                        <button className='font-sans font-bold mr-[10px] text-sm text-[#31323F]'>
                             Cerrar sesión
                         </button>
-                        <FaArrowRightToBracket className='size-6' />
+                        <FaArrowRightToBracket className='size-6 text-[#31323F]' />
                     </div>
+
                 </div>
 
                 <div className='nav-descargar'>
 
-                    <p style={{ fontSize: "20px", fontFamily: "Arial, Open Sans", fontWeight: "bold", color: "#413E4D", marginLeft: "4vh", padding: "1vw" }}>
+                    <p className=' font-sans font-bold text-xl my-[10px] ml-[2.5vw] text-[#413E4D]' >
                         Mis desembolsos
                     </p>
                     <button
-                        className='bg-[#DD3542] rounded-full w-[176px] h-[48px] text-[14px] text-white font-sans font-semibold'
+                        className='bg-[#DD3542] rounded-full w-[176px] h-[48px] mr-[2.5vw] text-[14px] text-white font-sans font-semibold'
                         onClick={() => descargarComoTexto()}
                         type="submit">
                         <TfiDownload className='absolute size-6 mx-[12px] mr-[140px]' />
@@ -111,25 +121,67 @@ const Desembolso = () => {
 
                 <div className='nav-checkbox'>
 
-                    <select id='doc' className='check' style={{ width: "176px", height: "56px", appearance: "none", color: "#ABB9C7" }} >
-                        <option >Tipo doc.</option>
-                        <option value="Cedula">Cedula</option>
-                        <option value="Pasaporte">Pasaporte</option>
-                        <option value="T. Identidad">T. Identidad</option>
-                    </select>
+                    {
+                        <MdCancel className='absolute -ml-[2.8rem] size-6 text-[#DD3542]' />
+                    }
 
-                    <input id='numdoc' className='check' style={{ width: "272px", height: "56px" }} placeholder="Número de documento" />
+                    <FloatingLabel className='text-[#ABB9C7]' label="Registros por página" style={{ appearance: "none" }} >
+                        <Form.Select id='doc' style={{ width: "176px", height: "56px" }}>
+                            <option> </option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </Form.Select>
+                    </FloatingLabel>
+                    <MdOutlineKeyboardArrowDown style={{ position: "absolute", marginLeft: "8.95rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none" }} />
 
-                    <input id='numdes' className='check' style={{ width: "272px", height: "56px" }} placeholder="Número de desembolso" />
-                    <input id='fecha1' type='date' className='check' style={{ width: "172px", height: "56px" }} placeholder="Desde" />
-                    <input id='fecha2' type='date' onKeyDown={agregarCampo} onChange={() => alert("undir enter para guardar")} className='check' style={{ width: "172px", height: "56px" }} placeholder="Hasta" />
 
+                    {/* <input id='numdoc' className='check'  placeholder="" /> */}
+
+                    <FloatingLabel
+                        label="Número de documento"
+                        style={{ width: "272px", height: "56px" }}
+                        className='text-[#ABB9C7]'
+                    >
+                        <Form.Control id='numdoc' placeholder="Número de documento" />
+                    </FloatingLabel>
+
+                    <FloatingLabel
+                        label="Número de desembolso"
+                        style={{ width: "272px", height: "56px" }}
+                        className='text-[#ABB9C7]'
+                    >
+                        <Form.Control id='numdes' placeholder="Número de desembolso" />
+                    </FloatingLabel>
+
+                    {/* <input id='numdes' className='check' style={{ width: "272px", height: "56px" }} placeholder="Número de desembolso" /> */}
+
+                    <FloatingLabel
+                        label="Desde"
+                        style={{ width: "176px", height: "56px" }}
+                        className='text-[#ABB9C7]'
+                    >
+                        <Form.Control id='fecha1' placeholder="00-00-0000" />
+                    </FloatingLabel>
+                    {/* <input id='fecha1' type='date' className='check' style={{ width: "176px", height: "56px" }} placeholder="Desde" /> */}
+
+                    <FloatingLabel
+                        label="Hasta"
+                        style={{ width: "176px", height: "56px" }}
+                        className='text-[#ABB9C7]'
+                    >
+                        <Form.Control id='fecha2' placeholder="00-00-0000" />
+                    </FloatingLabel>
+                    {/* <input id='fecha2' type='date' onKeyDown={agregarCampo} onChange={() => alert("undir enter para guardar")} className='check' style={{ width: "176px", height: "56px" }} placeholder="Hasta" /> */}
+
+                    <FaRegCalendarDays style={{ position: "absolute", marginLeft: "56rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
+                    <FaRegCalendarDays style={{ position: "absolute", marginLeft: "68rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
                 </div>
 
-                <div className='scroll-tabla'>
 
-                    <table className='mi-tabla' >
-                        <thead>
+                <div className='scroll-tabla'>
+                    <table className='mi-tabla'>
+                        <thead className='table-fixed'>
                             <tr style={{ height: "48px", background: "#F1F6FB" }}>
                                 <th className='letras' style={{ paddingLeft: "4vw", width: "276", height: "16" }}>Fecha y hora</th>
                                 <th className='letras' style={{ width: "240", height: "16" }}>Número de desembolso</th>
@@ -139,7 +191,7 @@ const Desembolso = () => {
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody >
                             {
                                 tabla.map((p) => (
                                     <tr style={{ height: "48px", color: "#8E8E8E", fontSize: "14px" }}>
@@ -152,10 +204,9 @@ const Desembolso = () => {
                                 ))
                             }
                         </tbody>
-
                     </table>
-
                 </div>
+
 
 
                 {/*############################################### PAGINAS CON POSITION RELATIVE ############################################### */}
@@ -178,7 +229,7 @@ const Desembolso = () => {
                         </div>
                     </div>
 
-                    <div className='checkPaginacion'>
+                    <div className='checkPaginacion text-[#ABB9C7]'>
                         <FloatingLabel label="Registros por página">
                             <Form.Select style={{ width: "268px", height: "56px" }}>
                                 <option>16</option>
@@ -190,19 +241,14 @@ const Desembolso = () => {
                     </div>
                 </div>
 
-                <MdOutlineKeyboardArrowDown style={{ position: "relative", top: "-43em", left: "13em", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none" }} />
-                <FaRegCalendarDays style={{ position: "relative", top: "-43em", left: "60.4em", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
-                <FaRegCalendarDays style={{ position: "relative", top: "-43em", left: "70.8em", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
-
-
                 <div id="miDiv" className='mensaje'>
 
-                    <p style={{ fontSize: "14px", margin: "0", fontFamily: "Arial, Open Sans", color: "#413E4D", width: "180px" }}>
-                        Pedro Pérez ha hecho <br />una compra por valor de <br /> <div style={{ color: "#413E4D", fontFamily: "Arial, Open Sans", fontWeight: "bold" }}>$1.800.000</div>
+                    <p className='text-[#413E4D] m-[20px] text-sm font-sans font-normal'>
+                        Pedro Pérez ha hecho<br /> una compra por valor de <strong>$1.800.000</strong>
                     </p>
 
                     <div onClick={() => cerrar()} id="toggleButton" style={{ pointerEvents: "auto" }}>
-                        <MdCancel style={{ position: "relative", color: "#DD3542", width: "24px", height: "24px", top: "-3.2em", left: "1.5em" }} />
+                        <MdCancel style={{ position: "relative", color: "#DD3542", width: "24px", height: "24px", top: "-3.2rem", left: "0.5rem" }} />
                     </div>
                 </div>
 

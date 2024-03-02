@@ -48,8 +48,8 @@ const Login = () => {
           </div>
 
           <div className='email'>
-            <FloatingLabel className='mb-[12px] text-[#ABB9C7]' label="Usuario" >
-              <Form.Control className={`w-[368px] h-[56px] ${(error === "" ? 'border-[#ABB9C780]' : error)} rounded-md`} type="email" placeholder="name@example.com" id='user' />
+            <FloatingLabel className='mb-[12px] text-[#ABB9C7]' label="Usuario"  >
+              <Form.Control className={`w-[368px] h-[56px] ${(error === "" ? 'border-[#ABB9C780]' : error)} rounded-md `} type="email" placeholder="name@example.com" id='user' />
             </FloatingLabel>
             <FloatingLabel className='text-[#ABB9C7]' label="Contraseña">
               <Form.Control className={`w-[368px] h-[56px] ${(error2 === "" ? 'border-[#ABB9C780]' : error2)} rounded-md`} type="password" placeholder="Contraseña" id="password" />
