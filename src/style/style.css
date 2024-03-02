@@ -102,8 +102,6 @@
 }
 
 .mi-tabla {
-    width: 1276px;
-    height: 48px;
     overflow: scroll;
 }
 
@@ -118,26 +116,6 @@
     background-color: #F7F7F7;
 }
 
-.scroll-tabla {
-    width: 1277px;
-    height: 550px;
-    overflow: auto;
-    appearance: none;
-    scrollbar-width: thin;
-    scrollbar-color: transparent transparent; 
-}
-
-.scroll-tabla::-webkit-scrollbar {
-    width: 0px;
-}
-
-.scroll-tabla::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-}
-
-.scroll-tabla::-webkit-scrollbar-track {
-    background-color: transparent;
-}
 
 .paginacion {
     position: relative;
@@ -145,7 +123,7 @@
     height: 80px;
     border-radius: 24px 24px 0px 0px;
     box-shadow: 0px 3px 16px #AAAAAA4D;
-    top: -5.1rem;
+    top: -5rem;
     left: 24em;
     display: flex;
     justify-content: space-between;

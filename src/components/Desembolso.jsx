@@ -47,7 +47,7 @@ const Desembolso = () => {
     const [pagination, setPagination] = useState(1)
 
     const [tabla, setTabla] = useState([
-        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$020.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
@@ -63,28 +63,34 @@ const Desembolso = () => {
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
     ]);
 
-    const agregarCampo = (event) => {
+    // const agregarCampo = (event) => {
 
-        const numeroAleatorio = Math.floor(Math.random() * 999999999) + 1;
-        const numeroFormateado = numeroAleatorio.toLocaleString();
+    //     const numeroAleatorio = Math.floor(Math.random() * 999999999) + 1;
+    //     const numeroFormateado = numeroAleatorio.toLocaleString();
 
-        if (event.key === 'Enter') {
+    //     if (event.key === 'Enter') {
 
-            const documento = document.getElementById("doc").value
-            const numDocumento = document.getElementById("numdoc").value
-            const numDescuento = document.getElementById("numdes").value
-            const desdeFecha = document.getElementById("fecha1").value
+    //         const documento = document.getElementById("doc").value
+    //         const numDocumento = document.getElementById("numdoc").value
+    //         const numDescuento = document.getElementById("numdes").value
+    //         const desdeFecha = document.getElementById("fecha1").value
 
-            const nuevoCampo = { fecha: desdeFecha + " " + hora, desembolso: numDescuento, tdoc: documento, documento: numDocumento, monto: "$" + numeroFormateado };
-            setTabla([...tabla, nuevoCampo]);
-        }
-    }
+    //         const nuevoCampo = { fecha: desdeFecha + " " + hora, desembolso: numDescuento, tdoc: documento, documento: numDocumento, monto: "$" + numeroFormateado };
+    //         setTabla([...tabla, nuevoCampo]);
+    //     }
+    // }
 
 
     const descargarComoTexto = () => {
         const contenido = JSON.stringify(tabla, null, 2);
         const blob = new Blob([contenido], { type: 'text/plain' });
         saveAs(blob, 'datos.txt');
+    };
+
+    const [selectedOption, setSelectedOption] = useState('');
+
+    const handleSelectChange = (e) => {
+        setSelectedOption(e.target.value);
     };
 
     return (
@@ -125,15 +131,28 @@ const Desembolso = () => {
                         <MdCancel className='absolute -ml-[2.8rem] size-6 text-[#DD3542]' />
                     }
 
-                    <FloatingLabel className='text-[#ABB9C7]' label="Registros por página" style={{ appearance: "none" }} >
-                        <Form.Select id='doc' style={{ width: "176px", height: "56px" }}>
+                    <FloatingLabel
+                        controlId="floatingSelect"
+                        label={selectedOption ? 'Tipo doc.' : ''}
+                        className={`text-[#ABB9C7] ${selectedOption ? 'text-sm text-[#ABB9C7]' : 'text-base'}`}
+                    >
+                        <Form.Select
+                            className='focus:outline-none focus:shadow-outline-blue focus:border-blue-300'
+                            id='doc'
+                            style={{ width: "176px", height: "56px" }}
+                            onChange={handleSelectChange}
+                        >
                             <option> </option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                         </Form.Select>
+                        
+                            <MdOutlineKeyboardArrowDown
+                                className='size-6 bg-white'
+                                style={{ position: "absolute", top: "1.2rem", marginLeft: "8.75rem", color: "#DD3542", pointerEvents: "none" }}
+                            />
                     </FloatingLabel>
-                    <MdOutlineKeyboardArrowDown style={{ position: "absolute", marginLeft: "8.95rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none" }} />
 
 
                     {/* <input id='numdoc' className='check'  placeholder="" /> */}
@@ -178,28 +197,25 @@ const Desembolso = () => {
                     <FaRegCalendarDays style={{ position: "absolute", marginLeft: "68rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
                 </div>
 
+                <section className='bg-[#F1F6FB] w-[1280px] h-[48] flex justify-center items-center'>
+                    <p className='py-[12px] w-[276px] ml-[72px] font-sans font-bold text-[#413E4D] text-sm'>Fecha y hora</p>
+                    <p className='py-[12px] w-[240px] font-sans font-bold text-[#413E4D] text-sm'>Número de desembolso</p>
+                    <p className='py-[12px] w-[236px] font-sans font-bold text-[#413E4D] text-sm'>Tipo de documento</p>
+                    <p className='py-[12px] w-[256px] font-sans font-bold text-[#413E4D] text-sm'>Número de documento</p>
+                    <p className='py-[12px] w-[176px] mr-[24px] font-sans font-bold text-[#413E4D] text-sm'>Monto</p>
+                </section>
 
-                <div className='scroll-tabla'>
-                    <table className='mi-tabla'>
-                        <thead className='table-fixed'>
-                            <tr style={{ height: "48px", background: "#F1F6FB" }}>
-                                <th className='letras' style={{ paddingLeft: "4vw", width: "276", height: "16" }}>Fecha y hora</th>
-                                <th className='letras' style={{ width: "240", height: "16" }}>Número de desembolso</th>
-                                <th className='letras' style={{ width: "236", height: "16" }} >Tipo de documento</th>
-                                <th className='letras' style={{ width: "256", height: "16" }} >Número de documento</th>
-                                <th className='letras' style={{ paddingRight: "4vw", width: "176", height: "16" }}>Monto</th>
-                            </tr>
-                        </thead>
-
-                        <tbody >
+                <div className='max-h-[505px] w-[1292px] overflow-y-scroll pb-24' style={{ scrollbarColor: 'transparent transparent' }}>
+                    <table className='mi-tabla w-full table-fixed overflow-hidden'>
+                        <tbody>
                             {
                                 tabla.map((p) => (
-                                    <tr style={{ height: "48px", color: "#8E8E8E", fontSize: "14px" }}>
-                                        <td style={{ paddingLeft: "4vw" }}>{p.fecha}</td>
-                                        <td>{p.desembolso}</td>
-                                        <td>{p.tdoc}</td>
-                                        <td>{p.documento}</td>
-                                        <td style={{ fontWeight: "bold" }}>{p.monto}</td>
+                                    <tr className='flex justify-center items-center' style={{ height: "48px", color: "#8E8E8E", fontSize: "14px" }}>
+                                        <p className='w-[275px] ml-[72px] py-[16px]'>{p.fecha}</p>
+                                        <p className='w-[240px] p-0'>{p.desembolso}</p>
+                                        <p className='w-[236px] p-0'>{p.tdoc}</p>
+                                        <p className='w-[256px] p-0'>{p.documento}</p>
+                                        <p className='w-[176px] p-0 mr-[24px]'>{p.monto}</p>
                                     </tr>
                                 ))
                             }
@@ -208,14 +224,13 @@ const Desembolso = () => {
                 </div>
 
 
-
                 {/*############################################### PAGINAS CON POSITION RELATIVE ############################################### */}
 
                 <div className='paginacion'>
 
                     <div className='numeroPaginacion'>
                         <div style={{ padding: "10px" }}>
-                            <MdOutlineKeyboardArrowLeft onClick={() => (pagination === 1) ? setPagination(1) : setPagination(pagination - 1)} style={{ color: "#DD3542", width: "24px", height: "24px" }} />
+                            <MdOutlineKeyboardArrowLeft onClick={() => (pagination === 1) ? setPagination(1) : setPagination(pagination - 1)} style={{ color: "#DD3542", width: "24px", height: "24px", cursor: "pointer" }} />
                         </div>
 
                         <div style={{ width: "48px", height: "48px", border: "1px solid #ABB9C780", borderRadius: "6px", display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -225,18 +240,19 @@ const Desembolso = () => {
                         <p style={{ fontSize: "16px", margin: "0", padding: "10px", font: "arial, Lato", color: "#414141", fontWeight: "Regular" }}>de 10</p>
 
                         <div style={{ padding: "10px" }}>
-                            <MdOutlineKeyboardArrowRight onClick={() => (pagination === 10) ? setPagination(10) : setPagination(pagination + 1)} style={{ color: "#DD3542", width: "24px", height: "24px" }} />
+                            <MdOutlineKeyboardArrowRight onClick={() => (pagination === 10) ? setPagination(10) : setPagination(pagination + 1)} style={{ color: "#DD3542", width: "24px", height: "24px", cursor: "pointer" }} />
                         </div>
                     </div>
 
                     <div className='checkPaginacion text-[#ABB9C7]'>
                         <FloatingLabel label="Registros por página">
-                            <Form.Select style={{ width: "268px", height: "56px" }}>
+                            <Form.Select className='focus:outline-none focus:shadow-outline-blue focus:border-blue-300' style={{ width: "268px", height: "56px" }}>
                                 <option>16</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
                             </Form.Select>
+                            <MdOutlineKeyboardArrowDown className='size-6 bg-white' style={{ position: "absolute", top: "1.2rem", marginLeft: "14.5rem", color: "#DD3542", pointerEvents: "none" }} />
                         </FloatingLabel>
                     </div>
                 </div>

@@ -48,15 +48,17 @@ const Login = () => {
           </div>
 
           <div className='email'>
-            <FloatingLabel className='mb-[12px] text-[#ABB9C7]' label="Usuario"  >
-              <Form.Control className={`w-[368px] h-[56px] ${(error === "" ? 'border-[#ABB9C780]' : error)} rounded-md `} type="email" placeholder="name@example.com" id='user' />
-            </FloatingLabel>
-            <FloatingLabel className='text-[#ABB9C7]' label="Contraseña">
-              <Form.Control className={`w-[368px] h-[56px] ${(error2 === "" ? 'border-[#ABB9C780]' : error2)} rounded-md`} type="password" placeholder="Contraseña" id="password" />
-            </FloatingLabel>
-            <button onClick={() => Sesion()} className='relative w-[174px] bg-[#DD3542] rounded-full h-[48px] font-sans font-semibold text-white mt-[48px]' variant="danger" type="submit">
-              INGRESAR
-            </button>
+            <form>
+              <FloatingLabel className='mb-[12px] text-[#ABB9C7]' label="Usuario"  >
+                <Form.Control className={`w-[368px] h-[56px] ${(error === "" ? 'border-[#ABB9C780]' : error)} rounded-md `} type="email" placeholder="name@example.com" id='user' />
+              </FloatingLabel>
+              <FloatingLabel className='text-[#ABB9C7]' label="Contraseña">
+                <Form.Control className={`w-[368px] h-[56px] ${(error2 === "" ? 'border-[#ABB9C780]' : error2)} rounded-md`} type="password" placeholder="Contraseña" id="password" />
+              </FloatingLabel>
+              <button onClick={() => Sesion()} className='relative w-[174px] bg-[#DD3542] rounded-full h-[48px] font-sans font-semibold text-white mt-[48px]' variant="danger" type="submit">
+                INGRESAR
+              </button>
+            </form>
           </div>
           <div className='relative mx-auto w-[336px] h-[16px] mt-[104px] text-xs font-sans text-[#413E4D] '>
             <u>No recuerdo mi contraseña</u>
