@@ -48,20 +48,22 @@ const Desembolso = () => {
 
     const [tabla, setTabla] = useState([
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$020.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '25874655', tdoc: "T. Identidad", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Pasaporte", documento: "1048225664", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '51351357', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "T. Identidad", documento: "0000000000", monto: "$000.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '85278964', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "T. Identidad", documento: "0000000000", monto: "$000.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '28438416', tdoc: "Pasaporte", documento: "1048775668", monto: "$000.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
-        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
-        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
-        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
-        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
-        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
-        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
-        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
-        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
-        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
-        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "T. Identidad", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '12345678', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Pasaporte", documento: "104877864", monto: "$000.000.000" },
     ]);
+
+    const [tabla2] = useState(tabla)
 
     // const agregarCampo = (event) => {
 
@@ -80,17 +82,61 @@ const Desembolso = () => {
     //     }
     // }
 
-
     const descargarComoTexto = () => {
         const contenido = JSON.stringify(tabla, null, 2);
         const blob = new Blob([contenido], { type: 'text/plain' });
         saveAs(blob, 'datos.txt');
     };
 
-    const [selectedOption, setSelectedOption] = useState('');
+    const [documento, setDocumento] = useState('');
+    const [numDocumento, setNumDocumento] = useState('');
+    const [numDesembolso, setNumDesembolso] = useState('');
+    const [desdeFecha, setDesdeFecha] = useState('');
+    const [desdeFecha2, setDesdeFecha2] = useState('');
 
-    const handleSelectChange = (e) => {
-        setSelectedOption(e.target.value);
+    const [cancel, setCancel] = useState([]);
+
+    let tablafiltro = tabla
+
+    const filtrar = () => {
+
+        const doc = [documento, numDocumento, numDesembolso, desdeFecha, desdeFecha2]
+        const docfil = doc.filter((palabra) => palabra !== "")
+
+        tablafiltro = tabla.filter(item =>
+            item.desembolso.includes(numDesembolso) &&
+            item.tdoc.includes(documento) &&
+            item.documento.includes(numDocumento) &&
+            item.fecha.includes(desdeFecha)
+        );
+
+        setTabla(tablafiltro)
+
+        setCancel(docfil)
+
+        console.log(cancel)
+    }
+
+    const Borrar = () => {
+        console.log("borraste los input")
+        setDocumento("")
+        setNumDesembolso("")
+        setNumDocumento("")
+        setNumDocumento("")
+        setDesdeFecha("")
+        setDesdeFecha2("")
+
+        setTabla(tabla2)
+
+        setCancel([])
+    }
+
+    const handleInput = (e) => {
+        const inputValue = e.target.value.replace(/\D/g, '');
+
+        const formattedValue = inputValue.replace(/^(.{2})(.{2})(.*)$/, '$1-$2-$3');
+
+        e.target.value = formattedValue;
     };
 
     return (
@@ -125,44 +171,53 @@ const Desembolso = () => {
                     </button>
                 </div>
 
-                <div className='nav-checkbox'>
+                <div onChange={filtrar} className='nav-checkbox'>
 
                     {
-                        <MdCancel className='absolute -ml-[2.8rem] size-6 text-[#DD3542]' />
+                        (cancel.length > 0)
+                            ?
+                            <MdCancel onClick={() => Borrar()} className='absolute -ml-[2.8rem] size-6 text-[#DD3542]' />
+                            :
+                            <></>
                     }
 
                     <FloatingLabel
-                        controlId="floatingSelect"
-                        label={selectedOption ? 'Tipo doc.' : ''}
-                        className={`text-[#ABB9C7] ${selectedOption ? 'text-sm text-[#ABB9C7]' : 'text-base'}`}
+                        label={documento ? 'Tipo doc.' : ''}
+                        className={`text-[#ABB9C7] ${documento ? 'text-sm text-[#ABB9C7]' : 'text-base'}`}
                     >
                         <Form.Select
-                            className='focus:outline-none focus:shadow-outline-blue focus:border-blue-300'
                             id='doc'
-                            style={{ width: "176px", height: "56px" }}
-                            onChange={handleSelectChange}
+                            style={{ width: "176px", height: "56px", color: "#413E4D" }}
+                            type="number"
+                            value={documento}
+                            onChange={(e) => setDocumento(e.target.value)}
+
                         >
                             <option> </option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="Cédula">Cédula</option>
+                            <option value="T. Identidad">T. identidad</option>
+                            <option value="Pasaporte">Pasaporte</option>
                         </Form.Select>
-                        
-                            <MdOutlineKeyboardArrowDown
-                                className='size-6 bg-white'
-                                style={{ position: "absolute", top: "1.2rem", marginLeft: "8.75rem", color: "#DD3542", pointerEvents: "none" }}
-                            />
+                        {
+                            documento === ""
+                                ?
+                                <p className='absolute top-[18px] left-[16px]' style={{ pointerEvents: "none" }}>Tipo doc.</p>
+                                :
+                                <></>
+                        }
+                        <MdOutlineKeyboardArrowDown
+                            className='size-6 bg-white'
+                            style={{ position: "absolute", top: "1.2rem", marginLeft: "8.75rem", color: "#DD3542", pointerEvents: "none" }}
+                        />
+
                     </FloatingLabel>
-
-
-                    {/* <input id='numdoc' className='check'  placeholder="" /> */}
 
                     <FloatingLabel
                         label="Número de documento"
                         style={{ width: "272px", height: "56px" }}
                         className='text-[#ABB9C7]'
                     >
-                        <Form.Control id='numdoc' placeholder="Número de documento" />
+                        <Form.Control id='numdoc' placeholder="Número de documento" value={numDocumento} onChange={(e) => setNumDocumento(e.target.value)} />
                     </FloatingLabel>
 
                     <FloatingLabel
@@ -170,31 +225,28 @@ const Desembolso = () => {
                         style={{ width: "272px", height: "56px" }}
                         className='text-[#ABB9C7]'
                     >
-                        <Form.Control id='numdes' placeholder="Número de desembolso" />
+                        <Form.Control id='numdes' placeholder="Número de desembolso" value={numDesembolso} onChange={(e) => setNumDesembolso(e.target.value)} />
                     </FloatingLabel>
-
-                    {/* <input id='numdes' className='check' style={{ width: "272px", height: "56px" }} placeholder="Número de desembolso" /> */}
 
                     <FloatingLabel
                         label="Desde"
                         style={{ width: "176px", height: "56px" }}
                         className='text-[#ABB9C7]'
                     >
-                        <Form.Control id='fecha1' placeholder="00-00-0000" />
+                        <Form.Control id='fecha1' placeholder="00-00-0000" value={desdeFecha} maxLength={10} onInput={handleInput} onChange={(e) => setDesdeFecha(e.target.value)} />
                     </FloatingLabel>
-                    {/* <input id='fecha1' type='date' className='check' style={{ width: "176px", height: "56px" }} placeholder="Desde" /> */}
 
                     <FloatingLabel
                         label="Hasta"
                         style={{ width: "176px", height: "56px" }}
                         className='text-[#ABB9C7]'
                     >
-                        <Form.Control id='fecha2' placeholder="00-00-0000" />
+                        <Form.Control id='fecha2' placeholder="00-00-0000" value={desdeFecha2} maxLength={10} onInput={handleInput} onChange={(e) => setDesdeFecha2(e.target.value)} />
                     </FloatingLabel>
                     {/* <input id='fecha2' type='date' onKeyDown={agregarCampo} onChange={() => alert("undir enter para guardar")} className='check' style={{ width: "176px", height: "56px" }} placeholder="Hasta" /> */}
 
-                    <FaRegCalendarDays style={{ position: "absolute", marginLeft: "56rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
-                    <FaRegCalendarDays style={{ position: "absolute", marginLeft: "68rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
+                    <FaRegCalendarDays style={{ position: "absolute", marginLeft: "56.5rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
+                    <FaRegCalendarDays style={{ position: "absolute", marginLeft: "68.5rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
                 </div>
 
                 <section className='bg-[#F1F6FB] w-[1280px] h-[48] flex justify-center items-center'>
@@ -205,17 +257,17 @@ const Desembolso = () => {
                     <p className='py-[12px] w-[176px] mr-[24px] font-sans font-bold text-[#413E4D] text-sm'>Monto</p>
                 </section>
 
-                <div className='max-h-[505px] w-[1292px] overflow-y-scroll pb-24' style={{ scrollbarColor: 'transparent transparent' }}>
+                <div className='h-[505px] w-[101.5%] overflow-y-scroll pb-24' style={{ scrollbarColor: 'transparent transparent' }}>
                     <table className='mi-tabla w-full table-fixed overflow-hidden'>
                         <tbody>
                             {
-                                tabla.map((p) => (
-                                    <tr className='flex justify-center items-center' style={{ height: "48px", color: "#8E8E8E", fontSize: "14px" }}>
-                                        <p className='w-[275px] ml-[72px] py-[16px]'>{p.fecha}</p>
-                                        <p className='w-[240px] p-0'>{p.desembolso}</p>
-                                        <p className='w-[236px] p-0'>{p.tdoc}</p>
-                                        <p className='w-[256px] p-0'>{p.documento}</p>
-                                        <p className='w-[176px] p-0 mr-[24px]'>{p.monto}</p>
+                                tablafiltro.map((p, i) => (
+                                    <tr key={i} className='flex justify-center items-center' style={{ height: "48px", color: "#8E8E8E", fontSize: "14px" }}>
+                                        <td className='w-[275px] ml-[72px] p-0 py-[16px]'>{p.fecha}</td>
+                                        <td className='w-[240px] p-0'>{p.desembolso}</td>
+                                        <td className='w-[236px] p-1'>{p.tdoc}</td>
+                                        <td className='w-[256px] p-1'>{p.documento}</td>
+                                        <td className='w-[176px] p-1 mr-[24px] font-sans font-bold'>{p.monto}</td>
                                     </tr>
                                 ))
                             }
