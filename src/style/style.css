@@ -45,7 +45,6 @@
     }
 
     .sufi-desembolso {
-        width: 83px;
         height: 24px;
     }
 
@@ -65,9 +64,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-left: 3vw;
-        padding-right: 5vw;
-        padding: 0 70px;
 
     }
 
@@ -133,7 +129,6 @@
     }
 
     .mensaje {
-        position: relative;
         width: 236px;
         height: 108px;
 
@@ -141,15 +136,13 @@
         justify-content: center;
         align-items: center;
 
-        visibility: visible;
-
         background: var(--white_-ffffff) 0% 0% no-repeat padding-box;
         background: #FFFFFF 0% 0% no-repeat padding-box;
         box-shadow: 0px 3px 10px #E6E6E6;
         border-radius: 14px;
         opacity: 1;
-    }
 
+    }
 
     .fondo {
         width: 40vw;
@@ -321,4 +314,3 @@
         opacity: 1;
     }
 }
-

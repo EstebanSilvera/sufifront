@@ -61,8 +61,24 @@ const Desembolso = () => {
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "T. Identidad", documento: "0000000000", monto: "$000.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '12345678', tdoc: "Pasaporte", documento: "0000000000", monto: "$000.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "104877864", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Pasaporte", documento: "104877864", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "104877864", monto: "$020.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Pasaporte", documento: "0000000000", monto: "$030.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '25874655', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Pasaporte", documento: "1048225664", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '51351357', tdoc: "Identidad", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "T. Identidad", documento: "0000000000", monto: "$000.000.456" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.456.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '85278964', tdoc: "Identidad", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "T. Identidad", documento: "0000000000", monto: "$456.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$789.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '28438416', tdoc: "Pasaporte", documento: "1048775668", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "T. Identidad", documento: "0000000000", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '12345678', tdoc: "Pasaporte", documento: "0000000000", monto: "$000.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "104877864", monto: "$000.000.000" },
-        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "104877864", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Identidad", documento: "104877864", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "104877864", monto: "$030.000.000" },
     ]);
 
     const [tabla2] = useState(tabla)
@@ -141,6 +157,22 @@ const Desembolso = () => {
         e.target.value = formattedValue;
     };
 
+
+    const [paginaActual, setPaginaActual] = useState(1);
+    const [registros, setRegistros] = useState("16");
+
+    let indiceUltimoElemento = paginaActual * registros;
+    let indicePrimerElemento = indiceUltimoElemento - registros;
+
+    const registroPagina = (e) => {
+        setRegistros(e.target.value)
+
+        indiceUltimoElemento = paginaActual * registros;
+        indicePrimerElemento = indiceUltimoElemento - registros;
+    }
+
+    const elementosActuales = tabla.slice(indicePrimerElemento, indiceUltimoElemento);
+
     return (
         <div>
 
@@ -148,7 +180,7 @@ const Desembolso = () => {
 
                 <div className='nav-desembolso flex justify-between items-center xl:mt-0 xl:mb-0 mt-7 mb-7'>
 
-                    <img className='sufi-desembolso xl:ml-[598px] xl:mr-[430.89px] ml-5 ' src={sufi} alt='' />
+                    <img className='sufi-desembolso xl:ml-[598px] xl:mr-[430.89px] ml-5 xl:w-[83px] w-36 ' src={sufi} alt='' />
 
                     <div onClick={() => salir()} className='flex justify-center items-center cursor-pointer mr-[24px] w-[156px] h-[48px]'>
                         <button className='font-sans font-bold mr-[10px] text-sm text-[#31323F]'>
@@ -159,7 +191,7 @@ const Desembolso = () => {
 
                 </div>
 
-                <div className='nav-descargar flex justify-between items-center' style={{background:"linear-gradient(#D1E8FF74 1%, white 10%)"}}>
+                <div className='nav-descargar flex justify-between items-center' style={{ background: "linear-gradient(#D1E8FF74 1%, white 10%)" }}>
 
                     <p className=' font-sans font-bold text-xl xl:my-[10px] xl:ml-[2.5vw] text-[#413E4D] my-8 ml-10' >
                         Mis desembolsos
@@ -173,19 +205,19 @@ const Desembolso = () => {
                     </button>
                 </div>
 
-                <div onChange={filtrar} className='nav-checkbox flex flex-wrap items-center xl:ml-0 ml-6 xl:mb-0 '>
+                <div onChange={filtrar} className='nav-checkbox flex flex-wrap items-center xl:ml-0 ml-1 xl:mb-0 '>
 
                     {
                         (cancel.length > 0)
                             ?
-                            <MdCancel onClick={() => Borrar()} className='absolute xl:-ml-[2.8rem] xl:mt-0 xl:size-6 size-10 text-[#DD3542] ml-[17rem] mt-32' />
+                            <MdCancel onClick={() => Borrar()} className='absolute xl:ml-[1.5rem] xl:mt-0 xl:size-6 size-10 text-[#DD3542] ml-[17rem] mt-32' />
                             :
                             <></>
                     }
 
                     <FloatingLabel
                         label={documento ? 'Tipo doc.' : ''}
-                        className={`text-[#ABB9C7] xl:mr-0 mr-5 my-1 ${documento ? 'text-sm text-[#ABB9C7]' : 'text-base'}`}
+                        className={`text-[#ABB9C7] xl:ml-[72px] xl:mr-0 mr-1 my-1 ${documento ? 'text-sm text-[#ABB9C7]' : 'text-base'}`}
                     >
                         <Form.Select
                             id='doc'
@@ -214,21 +246,21 @@ const Desembolso = () => {
 
                     <FloatingLabel
                         label="Número de documento"
-                        className='text-[#ABB9C7] xl:mr-0 mr-5 my-1'
+                        className='text-[#ABB9C7] xl:mr-0 mr-1 my-1'
                     >
                         <Form.Control className='xl:w-[272px] xl:h-[56px] w-48' id='numdoc' placeholder="Número de documento" value={numDocumento} onChange={(e) => setNumDocumento(e.target.value)} />
                     </FloatingLabel>
 
                     <FloatingLabel
                         label="Número de desembolso"
-                        className='text-[#ABB9C7] xl:mr-0 mr-5 my-1'
+                        className='text-[#ABB9C7] xl:mr-0 mr-1 my-1'
                     >
                         <Form.Control className='xl:w-[272px] xl:h-[56px] w-48' id='numdes' placeholder="Número de desembolso" value={numDesembolso} onChange={(e) => setNumDesembolso(e.target.value)} />
                     </FloatingLabel>
 
                     <FloatingLabel
                         label="Desde"
-                        className='text-[#ABB9C7] xl:mr-0 mr-5 my-1'
+                        className='text-[#ABB9C7] xl:mr-0 mr-1 my-1'
                     >
                         <Form.Control className='xl:w-[176px] xl:h-[56px] w-48' id='fecha1' placeholder="00-00-0000" value={desdeFecha} maxLength={10} onInput={handleInput} onChange={(e) => setDesdeFecha(e.target.value)} />
                         <FaRegCalendarDays style={{ position: "absolute", top: "1rem", marginLeft: "8.5rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
@@ -236,7 +268,7 @@ const Desembolso = () => {
 
                     <FloatingLabel
                         label="Hasta"
-                        className='text-[#ABB9C7] xl:mr-0 mr-5 my-1'
+                        className='text-[#ABB9C7] xl:mr-[72px] mr-1 my-1'
                     >
                         <Form.Control className='xl:w-[176px] xl:h-[56px] w-48' id='fecha2' placeholder="00-00-0000" value={desdeFecha2} maxLength={10} onInput={handleInput} onChange={(e) => setDesdeFecha2(e.target.value)} />
                         <FaRegCalendarDays style={{ position: "absolute", top: "1rem", marginLeft: "8.5rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
@@ -256,7 +288,7 @@ const Desembolso = () => {
                     <table className='mi-tabla w-full table-fixed overflow-hidden '>
                         <tbody>
                             {
-                                tablafiltro.map((p, i) => (
+                                elementosActuales.map((p, i) => (
                                     <tr key={i} className='xl:flex xl:justify-center xl:items-center' style={{ height: "48px", color: "#8E8E8E", fontSize: "14px" }}>
                                         <td className='xl:w-[275px] xl:ml-[72px] p-0 xl:py-[16px] '>{p.fecha}</td>
                                         <td className='xl:w-[240px] p-0'>{p.desembolso}</td>
@@ -278,47 +310,44 @@ const Desembolso = () => {
                     <div className='numeroPaginacion flex justify-center items-center'>
 
                         <div style={{ padding: "10px" }}>
-                            <MdOutlineKeyboardArrowLeft onClick={() => (pagination === 1) ? setPagination(1) : setPagination(pagination - 1)} style={{ color: "#DD3542", width: "24px", height: "24px", cursor: "pointer" }} />
+                            <MdOutlineKeyboardArrowLeft onClick={() => (paginaActual === 1) ? setPaginaActual(1) : setPaginaActual(paginaActual - 1)} style={{ color: "#DD3542", width: "24px", height: "24px", cursor: "pointer" }} />
                         </div>
 
                         <div style={{ width: "48px", height: "48px", border: "1px solid #ABB9C780", borderRadius: "6px", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            {pagination}
+                            {paginaActual}
                         </div>
 
                         <p className='w-16' style={{ fontSize: "16px", margin: "0", padding: "10px", font: "arial, Lato", color: "#414141", fontWeight: "Regular" }}>de 10</p>
 
                         <div >
-                            <MdOutlineKeyboardArrowRight onClick={() => (pagination === 10) ? setPagination(10) : setPagination(pagination + 1)} style={{ color: "#DD3542", width: "24px", height: "24px", cursor: "pointer" }} />
+                            <MdOutlineKeyboardArrowRight onClick={() => (paginaActual === 10) ? setPaginaActual(10) : setPaginaActual(paginaActual + 1)} style={{ color: "#DD3542", width: "24px", height: "24px", cursor: "pointer" }} />
                         </div>
                     </div>
 
                     <div className='checkPaginacion text-[#ABB9C7] '>
                         <FloatingLabel label="Registros por página">
-                            <Form.Select className='focus:outline-none focus:shadow-outline-blue focus:border-blue-300 xl:w-[268px] xl:h-[56px] w-44'>
-                                <option>{tabla.length}</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <Form.Select onChange={registroPagina} className='focus:outline-none focus:shadow-outline-blue focus:border-blue-300 xl:w-[268px] xl:h-[56px] w-44'>
+                                <option value="16">16</option>
+                                <option value="12">12</option>
+                                <option value="8">8</option>
+                                <option value="4">4</option>
                             </Form.Select>
                             <MdOutlineKeyboardArrowDown className='absolute size-6 bg-white xl:top-[1.2rem] xl:ml-[14.5rem] text-[#DD3542] pointer-events-none top-4 ml-36' />
                         </FloatingLabel>
                     </div>
                 </div>
 
-                <div className=' flex justify-end'>
+                <div id="miDiv" className='animacion-login-2 mensaje xl:relative xl:ml-[950px] xl:top-[-13.2rem] xl:w-[236px] xl:h-[108px] rounded-xl fixed w-48 bg-white top-[75%] ml-5 z-50 '>
 
-                    <div id="miDiv" className='animacion-login-2 mensaje xl:relative xl:mr-20 xl:top-[-13.3rem] xl:w-[236px] xl:h-[108px] rounded-xl fixed w-48 bg-white top-[85%] mr-5 items-center z-50'>
+                    <p className='text-[#413E4D] m-[20px] text-sm font-sans font-normal '>
+                        Pedro Pérez ha hecho<br /> una compra por valor de <strong>$1.800.000</strong>
+                    </p>
 
-                        <p className='text-[#413E4D] m-[20px] text-sm font-sans font-normal '>
-                            Pedro Pérez ha hecho<br /> una compra por valor de <strong>$1.800.000</strong>
-                        </p>
-
-                        <div onClick={() => cerrar()} id="toggleButton" className='cursor-pointer ' >
-                            <MdCancel className='absolute text-[#DD3542] size-6 xl:top-[-0.5rem] xl:left-[13.8rem] left-44 -top-2' />
-                        </div>
+                    <div onClick={() => cerrar()} id="toggleButton" className='cursor-pointer ' >
+                        <MdCancel className='absolute text-[#DD3542] size-6 xl:top-[-0.5rem] xl:left-[13.8rem] left-44 -top-2' />
                     </div>
-
                 </div>
+
             </div>
 
         </div>
