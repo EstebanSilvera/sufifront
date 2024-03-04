@@ -287,3 +287,38 @@
     }
 }
 
+.elemento-izquierda2 {
+    opacity: 0;
+    animation: aparecerIzquierda2 0.5s ease-out 0.8s forwards;
+}
+
+@keyframes aparecerIzquierda2 {
+    from {
+        transform: translateX(-20%) translateY(10%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.elemento-derecha2 {
+    opacity: 0;
+    animation: aparecerDerecha2 0.5s ease-out 0.8s forwards;
+}
+
+@keyframes aparecerDerecha2 {
+    from {
+        animation-delay: 1s;
+        transform: translateX(20%) translateY(-10%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0) skewY(0);
+        opacity: 1;
+    }
+}
+

@@ -3,6 +3,7 @@ import '../style/style.css'
 import sufi from "../img/sufi.png"
 import { Form, FloatingLabel, Modal } from 'react-bootstrap';
 import punto from "../img/197.png"
+import fondo from "../img/32966.png"
 import fondo2 from "../img/32967.png"
 import ochoPuntos from "../img/36052.png"
 import { useState } from 'react';
@@ -96,9 +97,9 @@ const Login = () => {
   return (
     <div>
 
-      <div className='login xl:mx-auto bg-white' style={{ backgroundImage: `url(${fondo2})`, overflow: "hidden" }}>
+      <div className='login xl:mx-auto bg-white relative overflow-hidden'>
 
-        <div className='form'>
+        <div className='form relative z-50'>
 
           <div className='animacion-login xl:w-[368px] xl:h-[164px] xl:mb-[32px] xl:mx-auto'>
 
@@ -150,10 +151,12 @@ const Login = () => {
 
         </div>
 
+        <img className='elemento-izquierda2 absolute top-[44vh] -left-[145px] z-0 ' src={fondo} alt='fondo' />
+        <img className='elemento-derecha2 absolute -top-[6.5vw] -right-[290px] ' src={fondo2} alt='fondo' />
+
       </div>
 
 
-      {/* <img className='absolute -top-14 right-7 z-0' src={fondo} alt='fondo' /> */}
 
       {/* <div className='position-fondo2'>
           <img className='fondo' src={fondo} alt='' />
@@ -162,12 +165,12 @@ const Login = () => {
         (isMobile)
           ?
           <div>
-            
-              <img className='ochopuntos elemento-izquierda' src={ochoPuntos} alt='' />
-              <img className='puntos2 elemento-izquierda' src={punto} alt='' />
 
-              <img className='ochopuntos2 elemento-derecha' src={ochoPuntos} alt='' />
-              <img className='puntos elemento-derecha' src={punto} alt='' />
+            <img className='ochopuntos elemento-izquierda' src={ochoPuntos} alt='' />
+            <img className='puntos2 elemento-izquierda' src={punto} alt='' />
+
+            <img className='ochopuntos2 elemento-derecha' src={ochoPuntos} alt='' />
+            <img className='puntos elemento-derecha' src={punto} alt='' />
           </div>
           :
           <></>
