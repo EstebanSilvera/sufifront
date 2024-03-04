@@ -61,6 +61,8 @@ const Desembolso = () => {
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "T. Identidad", documento: "0000000000", monto: "$000.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '12345678', tdoc: "Pasaporte", documento: "0000000000", monto: "$000.000.000" },
         { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "104877864", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "104877864", monto: "$000.000.000" },
+        { fecha: "00-00-0000 00:00:00", desembolso: '00000000', tdoc: "Cédula", documento: "104877864", monto: "$000.000.000" },
     ]);
 
     const [tabla2] = useState(tabla)
@@ -144,7 +146,7 @@ const Desembolso = () => {
 
             <div className='desembolso'>
 
-                <div className='nav-desembolso flex justify-between items-center xl:mt-0 mt-7'>
+                <div className='nav-desembolso flex justify-between items-center xl:mt-0 xl:mb-0 mt-7 mb-7'>
 
                     <img className='sufi-desembolso xl:ml-[598px] xl:mr-[430.89px] ml-5 ' src={sufi} alt='' />
 
@@ -157,9 +159,9 @@ const Desembolso = () => {
 
                 </div>
 
-                <div className='nav-descargar flex justify-between items-center'>
+                <div className='nav-descargar flex justify-between items-center' style={{background:"linear-gradient(#D1E8FF74 1%, white 10%)"}}>
 
-                    <p className=' font-sans font-bold text-xl xl:my-[10px] xl:ml-[2.5vw] text-[#413E4D] my-16 ml-10' >
+                    <p className=' font-sans font-bold text-xl xl:my-[10px] xl:ml-[2.5vw] text-[#413E4D] my-8 ml-10' >
                         Mis desembolsos
                     </p>
                     <button
@@ -180,10 +182,10 @@ const Desembolso = () => {
                             :
                             <></>
                     }
-                    
+
                     <FloatingLabel
                         label={documento ? 'Tipo doc.' : ''}
-                        className={`text-[#ABB9C7] my-2 ${documento ? 'text-sm text-[#ABB9C7]' : 'text-base'}`}
+                        className={`text-[#ABB9C7] xl:mr-0 mr-5 my-1 ${documento ? 'text-sm text-[#ABB9C7]' : 'text-base'}`}
                     >
                         <Form.Select
                             id='doc'
@@ -212,47 +214,46 @@ const Desembolso = () => {
 
                     <FloatingLabel
                         label="Número de documento"
-                        className='text-[#ABB9C7]'
+                        className='text-[#ABB9C7] xl:mr-0 mr-5 my-1'
                     >
                         <Form.Control className='xl:w-[272px] xl:h-[56px] w-48' id='numdoc' placeholder="Número de documento" value={numDocumento} onChange={(e) => setNumDocumento(e.target.value)} />
                     </FloatingLabel>
 
                     <FloatingLabel
                         label="Número de desembolso"
-                        className='text-[#ABB9C7]'
+                        className='text-[#ABB9C7] xl:mr-0 mr-5 my-1'
                     >
                         <Form.Control className='xl:w-[272px] xl:h-[56px] w-48' id='numdes' placeholder="Número de desembolso" value={numDesembolso} onChange={(e) => setNumDesembolso(e.target.value)} />
                     </FloatingLabel>
 
                     <FloatingLabel
                         label="Desde"
-                        className='text-[#ABB9C7]'
+                        className='text-[#ABB9C7] xl:mr-0 mr-5 my-1'
                     >
                         <Form.Control className='xl:w-[176px] xl:h-[56px] w-48' id='fecha1' placeholder="00-00-0000" value={desdeFecha} maxLength={10} onInput={handleInput} onChange={(e) => setDesdeFecha(e.target.value)} />
-                    <FaRegCalendarDays style={{ position: "absolute",top:"1rem", marginLeft: "8.5rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
+                        <FaRegCalendarDays style={{ position: "absolute", top: "1rem", marginLeft: "8.5rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
                     </FloatingLabel>
 
                     <FloatingLabel
                         label="Hasta"
-                        style={{ width: "176px", height: "56px" }}
-                        className='text-[#ABB9C7] my-2'
+                        className='text-[#ABB9C7] xl:mr-0 mr-5 my-1'
                     >
                         <Form.Control className='xl:w-[176px] xl:h-[56px] w-48' id='fecha2' placeholder="00-00-0000" value={desdeFecha2} maxLength={10} onInput={handleInput} onChange={(e) => setDesdeFecha2(e.target.value)} />
-                    <FaRegCalendarDays style={{ position: "absolute", top:"1rem", marginLeft: "8.5rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
+                        <FaRegCalendarDays style={{ position: "absolute", top: "1rem", marginLeft: "8.5rem", color: "#DD3542", width: "24px", height: "24px", pointerEvents: "none", backgroundColor: "white" }} />
                     </FloatingLabel>
                     {/* <input id='fecha2' type='date' onKeyDown={agregarCampo} onChange={() => alert("undir enter para guardar")} className='check' style={{ width: "176px", height: "56px" }} placeholder="Hasta" /> */}
                 </div>
 
-                <section className='bg-[#F1F6FB] xl:w-[1278px] xl:h-[48] flex justify-center items-center'>
-                    <p className='xl:py-[12px] xl:w-[276px] xl:ml-[72px] font-sans font-bold text-[#413E4D] text-sm ml-3 w-28'>Fecha y hora</p>
-                    <p className='xl:py-[12px] xl:w-[240px] font-sans font-bold text-[#413E4D] text-sm w-40'>Número de desembolso</p>
-                    <p className='xl:py-[12px] xl:w-[236px] font-sans font-bold text-[#413E4D] text-sm w-40'>Tipo de documento</p>
-                    <p className='xl:py-[12px] xl:w-[256px] font-sans font-bold text-[#413E4D] text-sm w-40'>Número de documento</p>
-                    <p className='xl:py-[12px] xl:w-[176px] xl:mr-[24px] font-sans font-bold text-[#413E4D] text-sm mr-10'>Monto</p>
+                <section className='bg-[#F1F6FB] xl:w-[1278px] xl:h-[48px] h-16 flex justify-evenly items-center'>
+                    <p className='xl:py-[12px] xl:w-[276px] xl:ml-[72px] font-sans font-bold text-[#413E4D] text-sm ml-3 '>Fecha y hora</p>
+                    <p className='xl:py-[12px] xl:w-[240px] font-sans font-bold text-[#413E4D] text-sm '>Número de desembolso</p>
+                    <p className='xl:py-[12px] xl:w-[236px] font-sans font-bold text-[#413E4D] text-sm '>Tipo de documento</p>
+                    <p className='xl:py-[12px] xl:w-[256px] font-sans font-bold text-[#413E4D] text-sm '>Número de documento</p>
+                    <p className='xl:py-[12px] xl:w-[176px] xl:mr-[24px] font-sans font-bold text-[#413E4D] text-sm mr-8'>Monto</p>
                 </section>
 
-                <div className='xl:h-[505px] xl:w-[101.5%] overflow-y-scroll xl:pb-24' style={{ scrollbarColor: 'transparent transparent' }}>
-                    <table className='mi-tabla w-full table-fixed overflow-hidden'>
+                <div className='xl:h-[502px] xl:w-[101.5%] overflow-y-scroll xl:pb-24 h-80 ' style={{ scrollbarColor: 'transparent transparent' }}>
+                    <table className='mi-tabla w-full table-fixed overflow-hidden '>
                         <tbody>
                             {
                                 tablafiltro.map((p, i) => (
@@ -272,7 +273,7 @@ const Desembolso = () => {
 
                 {/*############################################### PAGINAS CON POSITION RELATIVE ############################################### */}
 
-                <div className='paginacion flex justify-center items-center'>
+                <div className='paginacion relative xl:top-[-5rem] flex justify-center items-center top-4'>
 
                     <div className='numeroPaginacion flex justify-center items-center'>
 
@@ -294,7 +295,7 @@ const Desembolso = () => {
                     <div className='checkPaginacion text-[#ABB9C7] '>
                         <FloatingLabel label="Registros por página">
                             <Form.Select className='focus:outline-none focus:shadow-outline-blue focus:border-blue-300 xl:w-[268px] xl:h-[56px] w-44'>
-                                <option>16</option>
+                                <option>{tabla.length}</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
@@ -304,17 +305,20 @@ const Desembolso = () => {
                     </div>
                 </div>
 
-                <div id="miDiv" className='mensaje xl:relative xl:ml-0 xl:top-[-13.4rem] xl:w-[236px] xl:h-[108px] rounded-xl fixed shadow-md w-48 bg-white top-[85%] ml-56 z-50'>
+                <div className=' flex justify-end'>
 
-                    <p className='text-[#413E4D] m-[20px] text-sm font-sans font-normal '>
-                        Pedro Pérez ha hecho<br /> una compra por valor de <strong>$1.800.000</strong>
-                    </p>
+                    <div id="miDiv" className='animacion-login-2 mensaje xl:relative xl:mr-20 xl:top-[-13.3rem] xl:w-[236px] xl:h-[108px] rounded-xl fixed w-48 bg-white top-[85%] mr-5 items-center z-50'>
 
-                    <div onClick={() => cerrar()} id="toggleButton" className='cursor-pointer ' >
-                        <MdCancel className='absolute text-[#DD3542] size-6 xl:top-[-0.5rem] xl:left-[13.8rem] left-44 -top-2' />
+                        <p className='text-[#413E4D] m-[20px] text-sm font-sans font-normal '>
+                            Pedro Pérez ha hecho<br /> una compra por valor de <strong>$1.800.000</strong>
+                        </p>
+
+                        <div onClick={() => cerrar()} id="toggleButton" className='cursor-pointer ' >
+                            <MdCancel className='absolute text-[#DD3542] size-6 xl:top-[-0.5rem] xl:left-[13.8rem] left-44 -top-2' />
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
 
         </div>

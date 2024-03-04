@@ -100,7 +100,7 @@ const Login = () => {
 
         <div className='form'>
 
-          <div className='xl:w-[368px] xl:h-[164px] xl:mb-[32px] xl:mx-auto'>
+          <div className='animacion-login xl:w-[368px] xl:h-[164px] xl:mb-[32px] xl:mx-auto'>
 
             <img className='relative xl:mb-[12px] xl:left-[52px] left-[18vw] xl:mt-0 mt-32' style={{ width: "263.65px", height: "76px" }} src={sufi} alt='sufi' />
 
@@ -110,39 +110,42 @@ const Login = () => {
 
           </div>
 
-          <div className='email'>
-            <form onSubmit={handleSubmit}>
-              <FloatingLabel className='xl:mb-[12px] text-[#ABB9C7] mb-10 xl:ml-0 ml-16' label="Usuario">
-                <Form.Control
-                  className={`xl:w-[368px] xl:h-[56px] w-[80%] ${error || 'border-[#ABB9C780]'} rounded-md`}
-                  type="email"
-                  placeholder="name@example.com"
-                  id='user'
-                  value={user}
-                  onChange={(e) => setUser(e.target.value)}
-                />
-              </FloatingLabel>
+          <div className='animacion-login-2'>
 
-              <FloatingLabel className='text-[#ABB9C7] xl:ml-0 ml-16' label="Contraseña">
-                <Form.Control
-                  className={`xl:w-[368px] xl:h-[56px] w-[80%] ${error2 || 'border-[#ABB9C780]'} rounded-md`}
-                  type="password"
-                  placeholder="Contraseña"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </FloatingLabel>
+            <div className='email'>
+              <form onSubmit={handleSubmit}>
+                <FloatingLabel className='xl:mb-[12px] text-[#ABB9C7] mb-10 xl:ml-0 ml-16' label="Usuario">
+                  <Form.Control
+                    className={`xl:w-[368px] xl:h-[56px] w-[80%] ${error || 'border-[#ABB9C780]'} rounded-md`}
+                    type="email"
+                    placeholder="name@example.com"
+                    id='user'
+                    value={user}
+                    onChange={(e) => setUser(e.target.value)}
+                  />
+                </FloatingLabel>
 
-              <button
-                type="submit"
-                className='relative xl:left-0 left-[30vw] w-[174px] bg-[#DD3542] rounded-full h-[48px] font-sans font-semibold text-white xl:mt-[48px] mt-[50px]'>
-                INGRESAR
-              </button>
-            </form>
-          </div>
-          <div className='relative xl:mx-auto w-[336px] h-[16px] xl:mt-[104px] text-xs font-sans text-[#413E4D] mx-[33vw] mt-8 mb-[25vw]'>
-            <u onClick={() => setModalShow(true)} style={{ cursor: "pointer" }}>No recuerdo mi contraseña</u>
+                <FloatingLabel className='text-[#ABB9C7] xl:ml-0 ml-16' label="Contraseña">
+                  <Form.Control
+                    className={`xl:w-[368px] xl:h-[56px] w-[80%] ${error2 || 'border-[#ABB9C780]'} rounded-md`}
+                    type="password"
+                    placeholder="Contraseña"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </FloatingLabel>
+
+                <button
+                  type="submit"
+                  className='relative xl:left-0 left-[30vw] w-[174px] bg-[#DD3542] rounded-full h-[48px] font-sans font-semibold text-white xl:mt-[48px] mt-[50px]'>
+                  INGRESAR
+                </button>
+              </form>
+            </div>
+            <div className='relative xl:mx-auto w-[336px] h-[16px] xl:mt-[104px] text-xs font-sans text-[#413E4D] mx-[33vw] mt-8 mb-[25vw]'>
+              <u onClick={() => setModalShow(true)} style={{ cursor: "pointer" }}>No recuerdo mi contraseña</u>
+            </div>
           </div>
 
         </div>
@@ -159,11 +162,12 @@ const Login = () => {
         (isMobile)
           ?
           <div>
-            <img className='ochopuntos' src={ochoPuntos} alt='' />
-            <img className='ochopuntos2' src={ochoPuntos} alt='' />
+            
+              <img className='ochopuntos elemento-izquierda' src={ochoPuntos} alt='' />
+              <img className='puntos2 elemento-izquierda' src={punto} alt='' />
 
-            <img className='puntos' src={punto} alt='' />
-            <img className='puntos2' src={punto} alt='' />
+              <img className='ochopuntos2 elemento-derecha' src={ochoPuntos} alt='' />
+              <img className='puntos elemento-derecha' src={punto} alt='' />
           </div>
           :
           <></>
