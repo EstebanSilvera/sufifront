@@ -79,27 +79,42 @@ const Login = () => {
 
   const [modalShow, setModalShow] = useState(false);
 
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth > 1280);
+  const handleResize = () => {
+    setIsMobile(window.innerWidth > 1280);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div>
 
-      <div className='login mx-auto bg-white' style={{ backgroundImage: `url(${fondo2})`, overflow: "hidden" }}>
+      <div className='login xl:mx-auto bg-white' style={{ backgroundImage: `url(${fondo2})`, overflow: "hidden" }}>
 
         <div className='form'>
 
-          <div className='w-[368px] h-[164px] mb-[32px] mx-[16px]'>
+          <div className='xl:w-[368px] xl:h-[164px] xl:mb-[32px] xl:mx-auto'>
 
-            <img className='relative left-[52px] ' style={{ width: "263.65px", height: "76px" }} src={sufi} alt='sufi' />
+            <img className='relative xl:mb-[12px] xl:left-[52px] left-[18vw] xl:mt-0 mt-32' style={{ width: "263.65px", height: "76px" }} src={sufi} alt='sufi' />
 
-            <p className='font-sans font-bold left-[16px] w-[368px] h-[48px] text-[40px] text-[#413E4D] mb-[8px] mt-[12px]'>Sufipay</p>
+            <p className='font-sans xl:ml-0 font-bold xl:w-[368px] xl:h-[48px] text-[40px] text-[#413E4D] xl:mb-[8px] ml-[32vw]'>Sufipay</p>
 
-            <p className='font-sans w-[368px] h-[20px] text-[16px] text-[#413E4D]' style={{ color: "#413E4D" }}>Administrador comercial</p>
+            <p className='font-sans xl:ml-0 xl:w-[368px] xl:h-[20px] text-[16px] text-[#413E4D] h-[50px] ml-[28vw]' style={{ color: "#413E4D" }}>Administrador comercial</p>
+
           </div>
 
           <div className='email'>
             <form onSubmit={handleSubmit}>
-              <FloatingLabel className='mb-[12px] text-[#ABB9C7]' label="Usuario">
+              <FloatingLabel className='xl:mb-[12px] text-[#ABB9C7] mb-10 xl:ml-0 ml-16' label="Usuario">
                 <Form.Control
-                  className={`w-[368px] h-[56px] ${error || 'border-[#ABB9C780]'} rounded-md`}
+                  className={`xl:w-[368px] xl:h-[56px] w-[80%] ${error || 'border-[#ABB9C780]'} rounded-md`}
                   type="email"
                   placeholder="name@example.com"
                   id='user'
@@ -108,9 +123,9 @@ const Login = () => {
                 />
               </FloatingLabel>
 
-              <FloatingLabel className='text-[#ABB9C7]' label="Contraseña">
+              <FloatingLabel className='text-[#ABB9C7] xl:ml-0 ml-16' label="Contraseña">
                 <Form.Control
-                  className={`w-[368px] h-[56px] ${error2 || 'border-[#ABB9C780]'} rounded-md`}
+                  className={`xl:w-[368px] xl:h-[56px] w-[80%] ${error2 || 'border-[#ABB9C780]'} rounded-md`}
                   type="password"
                   placeholder="Contraseña"
                   id="password"
@@ -119,12 +134,14 @@ const Login = () => {
                 />
               </FloatingLabel>
 
-              <button type="submit" className='relative w-[174px] bg-[#DD3542] rounded-full h-[48px] font-sans font-semibold text-white mt-[48px]'>
+              <button
+                type="submit"
+                className='relative xl:left-0 left-[30vw] w-[174px] bg-[#DD3542] rounded-full h-[48px] font-sans font-semibold text-white xl:mt-[48px] mt-[50px]'>
                 INGRESAR
               </button>
             </form>
           </div>
-          <div className='relative mx-auto w-[336px] h-[16px] mt-[104px] text-xs font-sans text-[#413E4D] '>
+          <div className='relative xl:mx-auto w-[336px] h-[16px] xl:mt-[104px] text-xs font-sans text-[#413E4D] mx-[33vw] mt-8 mb-[25vw]'>
             <u onClick={() => setModalShow(true)} style={{ cursor: "pointer" }}>No recuerdo mi contraseña</u>
           </div>
 
@@ -135,21 +152,23 @@ const Login = () => {
 
       {/* <img className='absolute -top-14 right-7 z-0' src={fondo} alt='fondo' /> */}
 
-
-      <div>
-        <img className='ochopuntos' src={ochoPuntos} alt='' />
-        <img className='ochopuntos2' src={ochoPuntos} alt='' />
-      </div>
-
       {/* <div className='position-fondo2'>
           <img className='fondo' src={fondo} alt='' />
         </div> */}
+      {
+        (isMobile)
+          ?
+          <div>
+            <img className='ochopuntos' src={ochoPuntos} alt='' />
+            <img className='ochopuntos2' src={ochoPuntos} alt='' />
 
-      <div>
-        <img className='puntos' src={punto} alt='' />
+            <img className='puntos' src={punto} alt='' />
+            <img className='puntos2' src={punto} alt='' />
+          </div>
+          :
+          <></>
 
-        <img className='puntos2' src={punto} alt='' />
-      </div>
+      }
 
       <Modal
         show={modalShow} onHide={() => setModalShow(false)}

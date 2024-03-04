@@ -1,12 +1,15 @@
-.login {
-    width: 1280px;
-    height: 804px;
-    border: 2px solid #F0F0F0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2.9vw;
-}
+
+@media (min-width: 1280px) { 
+    .login {
+        width: 1280px;
+        height: 804px;
+        border: 2px solid #F0F0F0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2.9vw;
+    }
+
 
 .form {
     width: 400px;
@@ -101,22 +104,6 @@
     text-align: left;
 }
 
-.mi-tabla {
-    overflow: scroll;
-}
-
-.mi-tabla th,
-.mi-tabla td {
-    border: none;
-    padding: 8px;
-    text-align: left;
-}
-
-.mi-tabla tr:nth-child(even) {
-    background-color: #F7F7F7;
-}
-
-
 .paginacion {
     position: relative;
     width: 508px;
@@ -149,7 +136,6 @@
 
 .mensaje {
     position: relative;
-    top: -13.6rem;
     left: 950px;
     width: 236px;
     height: 108px;
@@ -220,3 +206,19 @@
 .hiddenDiv {
     display: none; 
   }
+}
+
+.mi-tabla {
+    overflow: scroll;
+}
+
+.mi-tabla th,
+.mi-tabla td {
+    border: none;
+    padding: 8px;
+    text-align: left;
+}
+
+.mi-tabla tr:nth-child(even) {
+    background-color: #F7F7F7;
+}
